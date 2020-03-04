@@ -89,7 +89,7 @@ def do2(ws, message):
         }
         data = jsBuilder(ma)
         ws.send(data)
-    if mscontent.startswith('jadd') and (qq == '675916756' or qq == '2233616017' or qq == '308445000'):
+    if mscontent.startswith('jadd') and (get_add_per(qq)):
         uuid = mscontent.replace('jadd', '')
         if len(uuid) == 9:
             sql.add_uuid(uuid)
@@ -101,33 +101,36 @@ def do2(ws, message):
             }
             data = jsBuilder(ma)
             ws.send(data)
-    elif qq == '675916756' or qq == '2233616017' or qq == '308445000' or qq == '1455518788':
+    elif mscontent.startswith('g') and get_gf_per(qq):
         strs = ''
-        if mscontent.startswith('g'):
-            lis = sql.get_uuids()
-            code = mscontent.replace('g', '')
-            for i in range(0, len(lis)):
-                util.get_gift(lis[i], code)
-                strs = strs + lis[i] + ','
-            msg = strs + '已经成功兑换！'
-            ma = {
+        lis = sql.get_uuids()
+        code = mscontent.replace('g', '')
+        for i in range(0, len(lis)):
+            util.get_gift(lis[i], code)
+            strs = strs + lis[i] + ','
+        msg = strs + '已经成功兑换！'
+        ma = {
             'act': '101',
             'groupid': Qgroupid,
             'msg': msg
-            }
-            data = jsBuilder(ma)
-            ws.send(data)
+        }
+        data = jsBuilder(ma)
+        ws.send(data)
 
-    
+def get_add_per(qq):
+    qqlist = ['675916756', '2233616017', '308445000']
+    return get_is_in(qqlist, qq)
 
+def get_gf_per(qq):
+    qqlist = ['675916756', '2233616017', '308445000', '1455518788']
+    return get_is_in(qqlist, qq)
 
-
-
-
-
-
-
-
+def get_is_in(lis, qq):
+    for i in range(len(lis)-1):
+        if qq is i:
+            return True
+        else:
+            return False
 
 
 def on_error(ws, error):
