@@ -119,17 +119,12 @@ def do2(ws, message):
 
 def get_add_per(qq):
     qqlist = ['675916756', '2233616017', '308445000']
-    return get_is_in(qqlist, qq)
+    return qq in qqlist
 
 def get_gf_per(qq):
     qqlist = ['675916756', '2233616017', '308445000', '1455518788']
-    return get_is_in(qqlist, qq)
+    return qq in qqlist
 
-def get_is_in(lis, qq):
-    for i in lis:
-        if qq is i:
-            return True
-    return False
 
 
 def on_error(ws, error):
