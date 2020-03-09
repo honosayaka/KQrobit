@@ -89,7 +89,7 @@ def do2(ws, message):
         }
         data = jsBuilder(ma)
         ws.send(data)
-    if mscontent.startswith('jadd') and (get_add_per(qq)):
+    if mscontent.startswith('jadd') and get_add_per(qq):
         uuid = mscontent.replace('jadd', '')
         if len(uuid) == 9:
             sql.add_uuid(uuid)
@@ -126,7 +126,7 @@ def get_gf_per(qq):
     return get_is_in(qqlist, qq)
 
 def get_is_in(lis, qq):
-    for i in range(len(lis)-1):
+    for i in lis:
         if qq is i:
             return True
         else:
