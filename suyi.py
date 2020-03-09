@@ -129,8 +129,7 @@ def get_is_in(lis, qq):
     for i in lis:
         if qq is i:
             return True
-        else:
-            return False
+    return False
 
 
 def on_error(ws, error):
