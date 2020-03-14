@@ -92,7 +92,7 @@ def do2(ws, message):
         }
         data = jsBuilder(ma)
         ws.send(data)
-    if mscontent.startswith('jadd') and get_add_per(qq):
+    elif mscontent.startswith('jadd') and get_add_per(qq):
         uuid = mscontent.replace('jadd', '')
         if len(uuid) == 9:
             sql.add_uuid(uuid)
