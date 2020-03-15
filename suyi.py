@@ -50,7 +50,7 @@ Qgroupid = 784604984  ###257909494
 def on_message(ws, message):
     print(message)
     myMsg = Msg(message)
-    if not myMsg.getMsgCont().startswith('[CQ'):
+    if '[CQ:' not in str(myMsg.getMsgCont()):
         sql.insert_msg(myMsg.getQQ(), myMsg.getMsgCont())
         if str(myMsg.getGroup()) == str(Qgroupid):
             do1(ws, message)
