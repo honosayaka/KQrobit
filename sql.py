@@ -89,7 +89,7 @@ def insert_msg(who, msg):
     conn = pymysql.connect(host='49.234.98.122', user='root', password='123456789a', database='foruse')
     # 得到一个可以执行SQL语句的光标对象
     cursor = conn.cursor()
-    sql = '''INSERT INTO chatlog (TIME,who,msg) VALUES (NOW(),%s,%s);''' % (who, msg)
+    sql = '''INSERT INTO chatlog (TIME,who,msg) VALUES (NOW(),'%s','%s');''' % (who, msg)
     # 执行SQL语句
     cursor.execute(sql)
     conn.commit()
