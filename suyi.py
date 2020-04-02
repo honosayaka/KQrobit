@@ -111,10 +111,15 @@ def do2(ws, message):
         strs = ''
         lis = sql.get_uuids()
         code = mscontent.replace('g', '')
+        res = ''
         for i in range(0, len(lis)):
+            if lis[i] == '519509620':
+                res = util.get_gift(lis[i], code)
+                strs = strs + lis[i] + ','
+                continue
             util.get_gift(lis[i], code)
             strs = strs + lis[i] + ','
-        msg = strs + '已经成功兑换！'
+        msg = strs + '已经成功兑换！' + '\n兑换结果:' + res
         ma = {
             'act': '101',
             'groupid': Qgroupid,
