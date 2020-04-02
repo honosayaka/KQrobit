@@ -45,7 +45,7 @@ groupid,msg'''
 Qgroupid = 784604984  ###257909494
 
 
-# Qgroupid = 257909494
+#Qgroupid = 257909494
 
 def on_message(ws, message):
     print(message)
@@ -119,7 +119,7 @@ def do2(ws, message):
                 continue
             util.get_gift(lis[i], code)
             strs = strs + lis[i] + ','
-        msg = strs + '已经成功兑换！' + '\n兑换结果:' + res
+        msg = strs + '已经成功兑换！' + '兑换结果:' + res
         ma = {
             'act': '101',
             'groupid': Qgroupid,
