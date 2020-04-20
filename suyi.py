@@ -2,6 +2,7 @@
 import sql
 import json
 import util
+import threading
 
 try:
     import thread
@@ -91,7 +92,7 @@ def do2(ws, message):
         ma = {
             'act': '101',
             'groupid': Qgroupid,
-            'msg': 'http://www.honosayaka.xyz:8080/ninja.html'
+            'msg': util.get_tru_str()+'http://www.honosayaka.xyz/ninja.html'
         }
         data = jsBuilder(ma)
         ws.send(data)
@@ -153,10 +154,11 @@ def on_close(ws):
 
 def on_open(ws):
     def run(*args):
+        my_thread = util.myThread(ws)
+        my_thread.start()
         print('have runed')
 
     thread.start_new_thread(run, ())
-
 
 if __name__ == "__main__":
     websocket.enableTrace(True)
@@ -166,3 +168,7 @@ if __name__ == "__main__":
                                 on_close=on_close)
     ws.on_open = on_open
     ws.run_forever()
+
+
+
+
