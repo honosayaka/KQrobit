@@ -5,6 +5,7 @@ import time
 import suyi
 import datetime
 
+
 def get_gift(uuid, code):
     res = requests.get(url='http://statistics.pandadastudio.com/player/giftCode?uid='+uuid+'&code='+code)
     if uuid == '519509620':
@@ -17,11 +18,12 @@ class myThread (threading.Thread):
     def __init__(self, ws):
         threading.Thread.__init__(self)
         self.ws = ws
+        
     def run(self):
         #schedule.every().day.at(time_every_day_sign_in).do(job)
         print('my thread have run!!!!!!')
+        schedule.every().saturday.at('12:00').do(self.send_tru)
         while True:
-            schedule.every().saturday.at('12:00').do(self.send_tru)
             schedule.run_pending()
             time.sleep(3)
             print('tru have send')
@@ -69,9 +71,7 @@ def get_tru_str():
         ]
     ]
 
-    week = datetime.datetime.now().isocalendar()[1] - 17
-    this_week = '本周：s:%s %s %s;ss:%s %s %s' % (tru[week][0][0], tru[week][0][1], tru[week][0][2],
-                                            tru[week][1][0], tru[week][1][1], tru[week][1][2])
-    next_week = '下周：s:%s %s %s;ss:%s %s %s' % (tru[week+1][0][0], tru[week+1][0][1], tru[week+1][0][2],
-                                            tru[week+1][1][0], tru[week+1][1][1], tru[week+1][1][2])
-    return this_week + next_week
+    week = datetime.datetime.now().isocalendar()[1] - 16
+    next_week = '下周：s:%s %s %s;ss:%s %s %s' % (tru[week][0][0], tru[week][0][1], tru[week][0][2],
+                                               tru[week][1][0], tru[week][1][1], tru[week][1][2])
+    return next_week
