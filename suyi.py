@@ -56,6 +56,7 @@ def on_message(ws, message):
         if str(myMsg.getGroup()) == str(Qgroupid):
             do1(ws, message)
             do2(ws, message)
+            do3(ws, message)
 
 
 
