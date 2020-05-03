@@ -93,7 +93,7 @@ def do2(ws, message):
         ma = {
             'act': '101',
             'groupid': Qgroupid,
-            'msg': util.get_tru_str()+'http://www.honosayaka.xyz/ninja.html'
+            'msg': util.get_tru_str()+'http://ninja.honosayaka.xyz'
         }
         data = jsBuilder(ma)
         ws.send(data)
