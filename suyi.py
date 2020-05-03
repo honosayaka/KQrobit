@@ -109,19 +109,16 @@ def do2(ws, message):
             }
             data = jsBuilder(ma)
             ws.send(data)
-    elif mscontent.startswith('g') and get_gf_per(qq):
-        strs = ''
+    elif mscontent.startswith('g'):
         lis = sql.get_uuids()
         code = mscontent.replace('g', '')
         res = ''
         for i in range(0, len(lis)):
             if lis[i] == '519509620':
                 res = util.get_gift(lis[i], code)
-                strs = strs + lis[i] + ','
                 continue
             util.get_gift(lis[i], code)
-            strs = strs + lis[i] + ','
-        msg = strs + '已经成功兑换！' + '兑换结果:' + res
+        msg = '已经兑换！' + '兑换结果:' + res
         ma = {
             'act': '101',
             'groupid': Qgroupid,
