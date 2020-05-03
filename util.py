@@ -32,7 +32,6 @@ class myThread (threading.Thread):
         while True:
             schedule.run_pending()
             time.sleep(3)
-            print('tru have send')
 
     def send_tru(self):
 
