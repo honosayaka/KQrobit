@@ -14,6 +14,12 @@ def get_gift(uuid, code):
         return js['msg']
 
 
+def get_chp():
+    return requests.get(url='https://chp.shadiao.app/api.php').text
+
+
+
+
 class myThread (threading.Thread):
     def __init__(self, ws):
         threading.Thread.__init__(self)
@@ -75,3 +81,4 @@ def get_tru_str():
     next_week = '下周：s:%s %s %s;ss:%s %s %s' % (tru[week][0][0], tru[week][0][1], tru[week][0][2],
                                                tru[week][1][0], tru[week][1][1], tru[week][1][2])
     return next_week
+

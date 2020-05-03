@@ -130,6 +130,19 @@ def do2(ws, message):
         ws.send(data)
 
 
+def do3(ws, message):
+    myMsg = Msg(message)
+    mscontent = str(myMsg.getMsgCont())
+    if mscontent == 'chp':
+        ma = {
+            'act': '101',
+            'groupid': Qgroupid,
+            'msg': util.get_chp()
+        }
+        data = jsBuilder(ma)
+        ws.send(data)
+
+
 def get_add_per(qq):
     qqlist = ['675916756', '2233616017', '308445000']
     return qq in qqlist
