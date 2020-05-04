@@ -2,7 +2,6 @@
 import sql
 import json
 import util
-import threading
 
 try:
     import thread

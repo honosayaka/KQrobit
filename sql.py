@@ -1,8 +1,17 @@
 # 导入pymysql模块
 import pymysql
+import json
 # 连接database
+with open('config.json') as f:
+    js = json.load(f)
+host = js['host']
+user = js['user']
+database = js['database']
+password = js['password']
+
+
 def getStat():
-    conn = pymysql.connect(host='49.234.98.122', user='root', password='123456789a', database='foruse')
+    conn = pymysql.connect(host=host, user=user, password=password, database=database)
     # 得到一个可以执行SQL语句的光标对象
     cursor = conn.cursor()
     # 定义要执行的SQL语句  UPDATE runoob_tbl
@@ -21,7 +30,7 @@ def getStat():
 
 
 def mi1(setNub):
-    conn = pymysql.connect(host='49.234.98.122', user='root', password='123456789a', database='foruse')
+    conn = pymysql.connect(host=host, user=user, password=password, database=database)
     # 得到一个可以执行SQL语句的光标对象
     cursor = conn.cursor()
     # 定义要执行的SQL语句  UPDATE runoob_tbl
@@ -43,7 +52,7 @@ def mi1(setNub):
 INSERT INTO table_name (列1, 列2,...) VALUES (值1, 值2,....)
 '''
 def add_uuid(uuid):
-    conn = pymysql.connect(host='49.234.98.122', user='root', password='123456789a', database='foruse')
+    conn = pymysql.connect(host=host, user=user, password=password, database=database)
     # 得到一个可以执行SQL语句的光标对象
     cursor = conn.cursor()
     # 定义要执行的SQL语句  UPDATE runoob_tbl
@@ -61,7 +70,7 @@ def add_uuid(uuid):
 
 
 def get_uuids():
-    conn = pymysql.connect(host='49.234.98.122', user='root', password='123456789a', database='foruse')
+    conn = pymysql.connect(host=host, user=user, password=password, database=database)
     # 得到一个可以执行SQL语句的光标对象
     cursor = conn.cursor()
     # 定义要执行的SQL语句  UPDATE runoob_tbl
@@ -86,7 +95,7 @@ def get_uuids():
 #     print('now is ', now)
 #     print(mi1(now - 1))
 def insert_msg(who, msg):
-    conn = pymysql.connect(host='49.234.98.122', user='root', password='123456789a', database='foruse')
+    conn = pymysql.connect(host=host, user=user, password=password, database=database)
     # 得到一个可以执行SQL语句的光标对象
     cursor = conn.cursor()
     sql = '''INSERT INTO chatlog (TIME,who,msg) VALUES (NOW(),'%s','%s');''' % (who, msg)
