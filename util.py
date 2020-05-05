@@ -7,7 +7,8 @@ import datetime
 
 
 def get_gift(uuid, code):
-    res = requests.get(url='http://statistics.pandadastudio.com/player/giftCode?uid='+uuid+'&code='+code)
+    res = requests.get(
+        url='http://statistics.pandadastudio.com/player/giftCode?uid='+uuid+'&code='+code)
     if uuid == '519509620':
         res.encoding = 'utf-8'
         js = res.json()
@@ -29,6 +30,7 @@ class myThread (threading.Thread):
         #schedule.every().day.at(time_every_day_sign_in).do(job)
         print('my thread have run!!!!!!')
         schedule.every().saturday.at('12:00').do(self.send_tru)
+        schedule.every().day.at('9:30').do(self.send_j)
         while True:
             schedule.run_pending()
             time.sleep(3)
@@ -39,6 +41,18 @@ class myThread (threading.Thread):
             'act': '101',
             'groupid': suyi.Qgroupid,
             'msg': get_tru_str()
+        }
+        data = suyi.jsBuilder(ma)
+        self.ws.send(data)
+
+
+    def send_j(self):
+        res = requests.get(url='https://api.timbrd.com/jkrb/total.php')
+        js = res.json()
+        ma = {
+            'act': '101',
+            'groupid': 687830669,
+            'msg': js['content']
         }
         data = suyi.jsBuilder(ma)
         self.ws.send(data)

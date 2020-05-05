@@ -23,7 +23,7 @@ class Msg:
     def getGroup(self):
         try:
             return self.js['fromGroup']
-        except Exception:
+        except KeyError:
             return ''
 
 
