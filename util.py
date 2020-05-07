@@ -30,7 +30,7 @@ class myThread (threading.Thread):
         #schedule.every().day.at(time_every_day_sign_in).do(job)
         print('my thread have run!!!!!!')
         schedule.every().saturday.at('12:00').do(self.send_tru)
-        schedule.every().day.at('9:30').do(self.send_j)
+        schedule.every().day.at('08:45').do(self.send_j)
         while True:
             schedule.run_pending()
             time.sleep(3)

@@ -28,11 +28,7 @@ class Msg:
 
 
 def jsBuilder(map):
-    s = '{'
-    for key in map:
-        s = s + '"' + str(key) + '":' + '"' + str(map[key]) + '",'
-    s = s + '}'
-    return s.replace(',}', '}')
+    return json.dumps(map)
 
 
 '''{    "act": "106",    "QQID": "1234",    "msg": "我很好！"}
