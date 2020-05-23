@@ -8,7 +8,7 @@ import datetime
 
 def get_gift(uuid, code):
     res = requests.get(
-        url='http://statistics.pandadastudio.com/player/giftCode?uid='+uuid+'&code='+code)
+        url='http://statistics.pandadastudio.com/player/giftCode?uid=' + uuid + '&code=' + code)
     if uuid == '519509620':
         res.encoding = 'utf-8'
         js = res.json()
@@ -19,24 +19,23 @@ def get_chp():
     return requests.get(url='https://chp.shadiao.app/api.php').text
 
 
-
-
-class myThread (threading.Thread):
+class myThread(threading.Thread):
     def __init__(self, ws):
         threading.Thread.__init__(self)
         self.ws = ws
-        
+
     def run(self):
-        #schedule.every().day.at(time_every_day_sign_in).do(job)
+        # schedule.every().day.at(time_every_day_sign_in).do(job)
         print('my thread have run!!!!!!')
         schedule.every().saturday.at('12:00').do(self.send_tru)
+        schedule.every().saturday.at('20:05').do(self.send_teambattle)
+        schedule.every().sunday.at('20:05').do(self.send_teambattle)
         schedule.every().day.at('08:45').do(self.send_j)
         while True:
             schedule.run_pending()
             time.sleep(3)
 
     def send_tru(self):
-
         ma = {
             'act': '101',
             'groupid': suyi.Qgroupid,
@@ -45,6 +44,14 @@ class myThread (threading.Thread):
         data = suyi.jsBuilder(ma)
         self.ws.send(data)
 
+    def send_teambattle(self):
+        ma = {
+            'act': '101',
+            'groupid': suyi.Qgroupid,
+            'msg': 'http://ninja.honosayaka.xyz/teambattle'
+        }
+        data = suyi.jsBuilder(ma)
+        self.ws.send(data)
 
     def send_j(self):
         res = requests.get(url='https://api.timbrd.com/jkrb/total.php')
@@ -94,4 +101,3 @@ def get_tru_str():
     next_week = '下周：s:%s %s %s;ss:%s %s %s' % (tru[week][0][0], tru[week][0][1], tru[week][0][2],
                                                tru[week][1][0], tru[week][1][1], tru[week][1][2])
     return next_week
-
